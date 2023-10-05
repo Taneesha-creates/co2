@@ -1,37 +1,43 @@
-.pretty-text-input-container {
-  display: flex;
-  align-items: center;
-  padding-left: 20px; /* Adjust the left padding as needed */
-  height: 100%; /* Ensure the container takes the full height */
-}
+import React, { useEffect } from 'react';
+import './TreeAnimation.css'; // Import your CSS file for styling
 
-.pretty-text-input {
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  padding: 10px;
-  width: 300px; /* Adjust the width as needed */
-  outline: none;
-  font-size: 16px;
-}
+const TreeAnimation = () => {
+  useEffect(() => {
+    const leaves = document.querySelectorAll('.leaf');
 
-.pretty-text-input::placeholder {
-  color: #aaa;
-}
+    leaves.forEach((leaf) => {
+      // Randomize initial position and animation duration
+      const initialX = Math.random() * window.innerWidth;
+      const initialY = Math.random() * window.innerHeight;
+      const animationDuration = Math.random() * 5 + 3; // Random duration between 3 and 8 seconds
 
-/* You can add more styles as needed */
+      // Set initial position
+      leaf.style.left = `${initialX}px`;
+      leaf.style.top = `${initialY}px`;
 
+      // Apply animation
+      leaf.style.animation = `leafAnimation ${animationDuration}s linear forwards`;
 
+      // Attach leaf to the tree when the animation ends
+      leaf.addEventListener('animationend', () => {
+        leaf.style.opacity = '0'; // Make the leaf invisible
+        leaf.style.animation = 'none'; // Remove the animation
+        leaf.style.left = '50%'; // Position the leaf at the tree
+        leaf.style.top = '70%'; // Adjust top value as needed
+      });
+    });
+  }, []);
 
-
-import React from 'react';
-import './PrettyTextInput.css'; // Import your CSS file for styling
-
-const PrettyTextInput = () => {
   return (
-    <div className="pretty-text-input-container">
-      <input type="text" className="pretty-text-input" placeholder="Enter text" />
+    <div className="tree-container">
+      <img src="tree.png" alt="Tree" className="tree" />
+      <div className="leaves">
+        <img src="leaf1.png" alt="Leaf" className="leaf" />
+        <img src="leaf2.png" alt="Leaf" className="leaf" />
+        {/* Add more leaves as needed */}
+      </div>
     </div>
   );
 };
 
-export default PrettyTextInput;
+export default TreeAnimation;
