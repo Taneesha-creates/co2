@@ -19,3 +19,19 @@
 }
 
 /* You can add more styles as needed */
+
+
+
+
+import React from 'react';
+import './PrettyTextInput.css'; // Import your CSS file for styling
+
+const PrettyTextInput = () => {
+  return (
+    <div className="pretty-text-input-container">
+      <input type="text" className="pretty-text-input" placeholder="Enter text" />
+    </div>
+  );
+};
+
+export default PrettyTextInput;
