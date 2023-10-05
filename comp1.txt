@@ -1,22 +1,21 @@
-import React from 'react';
-
-export default function TextInput() {
-  return (
-    <div className="flex justify-start">
-      <div className="max-w-sm mx-auto bg-white rounded-lg overflow-hidden">
-        <div className="px-6 py-4">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900">Input</h1>
-          </div>
-          <div className="mt-8">
-            <input
-              type="text"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="Enter text..."
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+.pretty-text-input-container {
+  display: flex;
+  align-items: center;
+  padding-left: 20px; /* Adjust the left padding as needed */
+  height: 100%; /* Ensure the container takes the full height */
 }
+
+.pretty-text-input {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  width: 300px; /* Adjust the width as needed */
+  outline: none;
+  font-size: 16px;
+}
+
+.pretty-text-input::placeholder {
+  color: #aaa;
+}
+
+/* You can add more styles as needed */
