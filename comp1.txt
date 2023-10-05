@@ -1,43 +1,88 @@
-import React, { useEffect } from 'react';
-import './TreeAnimation.css'; // Import your CSS file for styling
+import React from 'react';
+import './AccountSwitcherCard.css'; // Import your CSS file for styling
 
-const TreeAnimation = () => {
-  useEffect(() => {
-    const leaves = document.querySelectorAll('.leaf');
-
-    leaves.forEach((leaf) => {
-      // Randomize initial position and animation duration
-      const initialX = Math.random() * window.innerWidth;
-      const initialY = Math.random() * window.innerHeight;
-      const animationDuration = Math.random() * 5 + 3; // Random duration between 3 and 8 seconds
-
-      // Set initial position
-      leaf.style.left = `${initialX}px`;
-      leaf.style.top = `${initialY}px`;
-
-      // Apply animation
-      leaf.style.animation = `leafAnimation ${animationDuration}s linear forwards`;
-
-      // Attach leaf to the tree when the animation ends
-      leaf.addEventListener('animationend', () => {
-        leaf.style.opacity = '0'; // Make the leaf invisible
-        leaf.style.animation = 'none'; // Remove the animation
-        leaf.style.left = '50%'; // Position the leaf at the tree
-        leaf.style.top = '70%'; // Adjust top value as needed
-      });
-    });
-  }, []);
-
+const AccountSwitcherCard = ({ name, email, avatarSrc }) => {
   return (
-    <div className="tree-container">
-      <img src="tree.png" alt="Tree" className="tree" />
-      <div className="leaves">
-        <img src="leaf1.png" alt="Leaf" className="leaf" />
-        <img src="leaf2.png" alt="Leaf" className="leaf" />
-        {/* Add more leaves as needed */}
+    <div className="account-switcher-card">
+      <img src={avatarSrc} alt="Avatar" className="avatar" />
+      <div className="account-details">
+        <p className="name">{name}</p>
+        <p className="email">{email}</p>
       </div>
     </div>
   );
 };
 
-export default TreeAnimation;
+export default AccountSwitcherCard;
+
+
+
+
+.account-switcher-card {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.account-details {
+  flex: 1;
+}
+
+.name {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.email {
+  color: #555;
+  font-size: 14px;
+}
+
+
+
+
+
+
+
+import React from 'react';
+import AccountSwitcherCard from './AccountSwitcherCard';
+
+function App() {
+  const user1 = {
+    name: 'John Doe',
+    email: 'john@example.com',
+    avatarSrc: 'avatar1.jpg', // Replace with the actual image source
+  };
+
+  const user2 = {
+    name: 'Jane Smith',
+    email: 'jane@example.com',
+    avatarSrc: 'avatar2.jpg', // Replace with the actual image source
+  };
+
+  return (
+    <div className="App">
+      <AccountSwitcherCard {...user1} />
+      <AccountSwitcherCard {...user2} />
+      {/* Add more cards as needed */}
+    </div>
+  );
+}
+
+export default App;
